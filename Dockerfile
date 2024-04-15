@@ -1,12 +1,9 @@
+
 # Stage 1: Build the Spring Boot application
-FROM maven:3.8.4-openjdk-17-slim as builder
+FROM maven:3-jdk-8-alpine as builder
 
 # Set the working directory inside the container
 WORKDIR /app
-
-# Copy the Maven wrapper and project descriptor files
-COPY mvnw .
-COPY .mvn .mvn
 
 # Copy the project files
 COPY pom.xml .
@@ -16,7 +13,7 @@ COPY src src
 RUN mvn clean package -DskipTests
 
 # Stage 2: Create the Docker image
-FROM openjdk:17-alpine
+FROM quay.io/anshuk6469/openjdk8
 
 # Set the working directory inside the container
 WORKDIR /app
