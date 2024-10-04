@@ -3,8 +3,8 @@
 dockerImageName=$(awk 'NR==16 {print $2}' Dockerfile)
 echo $dockerImageName
 
-docker run -v /var/run/docker.sock:/var/run/docker.sock -v $HOME/Library/Caches:/root/.cache/ ghcr.io/aquasecurity/trivy --severity HIGH --exit-code 0 --timeout 20m image $dockerImageName 
-docker run -v /var/run/docker.sock:/var/run/docker.sock -v $HOME/Library/Caches:/root/.cache/ ghcr.io/aquasecurity/trivy --severity CRITICAL --exit-code 1 --timeout 20m image $dockerImageName
+docker run -v /var/run/docker.sock:/var/run/docker.sock -v $HOME/Library/Caches:/root/.cache/ aquasec/trivy --severity HIGH --exit-code 0 --timeout 20m image $dockerImageName 
+docker run -v /var/run/docker.sock:/var/run/docker.sock -v $HOME/Library/Caches:/root/.cache/ aquasec/trivy --severity CRITICAL --exit-code 1 --timeout 20m image $dockerImageName
 
 exit_code=$?
 echo "EXIT CODE : ${exit_code}"
